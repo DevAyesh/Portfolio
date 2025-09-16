@@ -213,13 +213,13 @@ header.scrolled {
 
 .image img {
   width: 100%;
-  max-width: 320px; /* Increased image size */
+  max-width: 410px; /* Increased image size */
   height: auto;
   object-fit: cover;
   /* This creates the fade-out effect on the edges */
   mask-image: radial-gradient(circle at center, black 50%, transparent 85%);
   /* Reduce opacity for subtle appearance */
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 /* ========== HERO WAVES ========== */
