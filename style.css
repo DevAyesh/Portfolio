@@ -197,12 +197,12 @@ header.scrolled {
 }
 
 .text h3 {
-  font-size: clamp(16px, 2.5vw, 20px); /* Responsive font size */
+  font-size: clamp(18px, 2.8vw, 24px); /* Larger responsive font size */
   color: #FFB343;
 }
 
 .text h1 {
-  font-size: clamp(32px, 5vw, 48px); /* Responsive font size */
+  font-size: clamp(40px, 6.5vw, 50px); /* Larger responsive font size */
   font-weight: 700;
   margin: 10px 0;
   position: relative; /* Needed for the underline */
@@ -222,7 +222,7 @@ header.scrolled {
 }
 
 .text h2 {
-  font-size: clamp(18px, 3vw, 22px); /* Responsive font size */
+  font-size: clamp(20px, 3.5vw, 28px); /* Larger responsive font size */
   font-weight: 600;
   margin-top: 20px; /* Adjusted margin */
   margin-bottom: 15px;
@@ -233,6 +233,7 @@ header.scrolled {
   max-width: 500px;
   color: #ccc;
   margin-bottom: 30px; /* Increased margin */
+  font-size: 18px;
 }
 
 /* Inline socials in hero text */
