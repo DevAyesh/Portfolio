@@ -1,27 +1,25 @@
 // =====================
-// Header scroll effect
+// Bootstrap Navbar scroll effect
 // =====================
 window.addEventListener("scroll", () => {
-  // Corrected selector to target the <header> tag
-  const header = document.querySelector("header");
-  if (!header) return;
+  const navbar = document.querySelector(".custom-navbar");
+  if (!navbar) return;
 
   // Add 'scrolled' class when user scrolls down
-  header.classList.toggle("scrolled", window.scrollY > 50);
+  navbar.classList.toggle("scrolled", window.scrollY > 50);
 });
 
 // =====================
 // Active navigation highlighting on scroll
 // =====================
 const sections = document.querySelectorAll("section[id]");
-// Corrected selector to target the <a> tags inside .nav-links
-const navLinks = document.querySelectorAll(".nav-links a");
+const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 
 window.addEventListener("scroll", () => {
   let currentSection = "";
 
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 150; // Adjusted offset
+    const sectionTop = section.offsetTop - 150;
     if (window.scrollY >= sectionTop) {
       currentSection = section.getAttribute("id");
     }
@@ -35,7 +33,6 @@ window.addEventListener("scroll", () => {
   });
 });
 
-
 // =====================
 // Smooth scroll effect for anchor links
 // =====================
@@ -44,48 +41,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     e.preventDefault();
     const targetId = this.getAttribute("href");
     const targetElement = document.querySelector(targetId);
-    const header = document.querySelector("header");
+    const navbar = document.querySelector(".navbar");
 
     if (targetElement) {
-      const headerHeight = header ? header.offsetHeight : 0;
-      const targetPosition = targetElement.offsetTop - headerHeight;
+      const navbarHeight = navbar ? navbar.offsetHeight : 0;
+      const targetPosition = targetElement.offsetTop - navbarHeight;
 
       window.scrollTo({
         top: targetPosition,
         behavior: "smooth"
       });
+
+      // Close mobile navbar if open
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
     }
   });
 });
-
-// =====================
-// Mobile menu toggle
-// =====================
-const menuToggle = document.querySelector(".menu-toggle");
-const navMenu = document.querySelector(".nav-links");
-
-if (menuToggle && navMenu) {
-  menuToggle.addEventListener("click", () => {
-    menuToggle.classList.toggle("active");
-    navMenu.classList.toggle("active");
-  });
-
-  // Close mobile menu when clicking on a nav link
-  document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-      menuToggle.classList.remove("active");
-      navMenu.classList.remove("active");
-    });
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-      menuToggle.classList.remove("active");
-      navMenu.classList.remove("active");
-    }
-  });
-}
 
 // =====================
 // Contact form handler
@@ -98,3 +75,166 @@ if (contactForm) {
     e.target.reset();
   });
 }
+
+
+
+
+
+
+// =====================
+// Particles.js Animation
+// =====================
+/*document.addEventListener('DOMContentLoaded', function() {
+  // Initialize particles.js
+  particlesJS('particles-js', {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#FFFFFF"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 20,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#FFFFFF",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 400,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true
+  });
+});
+*/
+// =====================
+// CSS Animations (injected via JavaScript)
+// =====================
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 179, 67, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 179, 67, 0.6);
+    }
+  }
+  
+  .project-card:hover .project-tag {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .sensor.active {
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  .success-banner {
+    animation: float 2s ease-in-out infinite;
+  }
+`;
+document.head.appendChild(style);
